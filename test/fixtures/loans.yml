@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrower: MyString
+  term: MyString
+  amount: MyString
+  rate: MyString
+  investorId: MyString
+  poolId: MyString
+  close_date: MyString
+
+two:
+  borrower: MyString
+  term: MyString
+  amount: MyString
+  rate: MyString
+  investorId: MyString
+  poolId: MyString
+  close_date: MyString

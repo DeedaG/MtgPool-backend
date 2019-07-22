@@ -5,4 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(username: "Jane", password: "Doe")
+
+ # john = User.create(username: "John Doe", password: "secretword")
+ #fancyBank = Investor.create(name: "Fancy Bank", fee: "100" )
+ jane = User.first
+ # jane.investors.create(name: "Fancy Bank", fee: "100")
+ fancyBank = Investor.first
+ pool1 = fancyBank.pools.create(name: "pool1", pool_amount: "500,000")
+ loan1 = pool1.loans.create(borrower: "Smith", term: "30", amount: "100,000", rate: "5.0", close_date: "8/15/19")

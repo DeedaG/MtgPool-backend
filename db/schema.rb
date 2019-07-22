@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_132111) do
+ActiveRecord::Schema.define(version: 2019_07_22_195623) do
 
   create_table "investors", force: :cascade do |t|
     t.string "name"
     t.integer "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "loans", force: :cascade do |t|
@@ -24,18 +25,19 @@ ActiveRecord::Schema.define(version: 2019_07_22_132111) do
     t.integer "term"
     t.integer "amount"
     t.integer "rate"
-    t.integer "investor_Id"
-    t.integer "pool_Id"
-    t.datetime "close_date"
+    t.integer "investor_id"
+    t.integer "pool_id"
+    t.date "close_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "pools", force: :cascade do |t|
-    t.integer "investor_Id"
+    t.integer "investor_id"
     t.integer "pool_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

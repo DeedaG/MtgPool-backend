@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_013024) do
+ActiveRecord::Schema.define(version: 2019_07_22_132111) do
 
   create_table "investors", force: :cascade do |t|
     t.string "name"
@@ -25,15 +25,15 @@ ActiveRecord::Schema.define(version: 2019_07_22_013024) do
     t.integer "amount"
     t.integer "rate"
     t.integer "investor_Id"
-    t.integer "poolId"
-    t.string "close_date"
+    t.integer "pool_Id"
+    t.datetime "close_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "pools", force: :cascade do |t|
     t.integer "investor_Id"
-    t.string "pool_amount"
+    t.integer "pool_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

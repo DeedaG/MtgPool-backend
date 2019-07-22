@@ -1254,3 +1254,73 @@ Migrating to AddUserIdToInvestors (20190722195623)
   [1m[36mPool Load (0.1ms)[0m  [1m[34mSELECT  "pools".* FROM "pools" WHERE "pools"."investor_id" = ? LIMIT ?[0m  [["investor_id", 1], ["LIMIT", 11]]
   [1m[36mPool Load (0.5ms)[0m  [1m[34mSELECT  "pools".* FROM "pools" ORDER BY "pools"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
   [1m[36mLoan Load (1.9ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" WHERE "loans"."pool_id" = ? LIMIT ?[0m  [["pool_id", 1], ["LIMIT", 11]]
+  [1m[36mLoan Load (0.1ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" ORDER BY "loans"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to RemoveInvestorIdFromLoans (20190722204135)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190722204135_remove_investor_id_from_loans.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aloans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investor_id" integer DEFAULT NULL, "pool_id" integer DEFAULT NULL, "close_date" date DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722204135_remove_investor_id_from_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aloans" ("id","borrower","term","amount","rate","investor_id","pool_id","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investor_id","pool_id","close_date","created_at","updated_at" FROM "loans"[0m
+  ↳ db/migrate/20190722204135_remove_investor_id_from_loans.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "loans"[0m
+  ↳ db/migrate/20190722204135_remove_investor_id_from_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "pool_id" integer DEFAULT NULL, "close_date" date DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722204135_remove_investor_id_from_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "loans" ("id","borrower","term","amount","rate","pool_id","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","pool_id","close_date","created_at","updated_at" FROM "aloans"[0m
+  ↳ db/migrate/20190722204135_remove_investor_id_from_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aloans"[0m
+  ↳ db/migrate/20190722204135_remove_investor_id_from_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190722204135"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mLoan Load (0.1ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" ORDER BY "loans"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mInvestor Load (0.1ms)[0m  [1m[34mSELECT  "investors".* FROM "investors" ORDER BY "investors"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mPool Load (0.1ms)[0m  [1m[34mSELECT  "pools".* FROM "pools" ORDER BY "pools"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ db/seeds.rb:16
+  [1m[36mLoan Load (0.1ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" ORDER BY "loans"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mLoan Load (0.1ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" ORDER BY "loans"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mLoan Load (0.5ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:11
+  [1m[36mInvestor Load (0.1ms)[0m  [1m[34mSELECT  "investors".* FROM "investors" ORDER BY "investors"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:13
+  [1m[36mPool Load (0.1ms)[0m  [1m[34mSELECT  "pools".* FROM "pools" ORDER BY "pools"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ db/seeds.rb:15
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:16
+  [1m[36mLoan Create (0.3ms)[0m  [1m[32mINSERT INTO "loans" ("borrower", "term", "amount", "rate", "pool_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["borrower", "Smith"], ["term", 30], ["amount", 100], ["rate", 5], ["pool_id", 1], ["created_at", "2019-07-22 20:44:34.191580"], ["updated_at", "2019-07-22 20:44:34.191580"]]
+  ↳ db/seeds.rb:16
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:16
+  [1m[36mLoan Load (0.1ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" ORDER BY "loans"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mLoan Load (0.4ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" ORDER BY "loans"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPool Load (0.1ms)[0m  [1m[34mSELECT  "pools".* FROM "pools" ORDER BY "pools"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mLoan Load (0.2ms)[0m  [1m[34mSELECT  "loans".* FROM "loans" WHERE "loans"."pool_id" = ? LIMIT ?[0m  [["pool_id", 1], ["LIMIT", 11]]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_195623) do
+ActiveRecord::Schema.define(version: 2019_07_22_204135) do
 
   create_table "investors", force: :cascade do |t|
     t.string "name"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_195623) do
     t.integer "term"
     t.integer "amount"
     t.integer "rate"
-    t.integer "investor_id"
     t.integer "pool_id"
     t.date "close_date"
     t.datetime "created_at", null: false

@@ -374,3 +374,376 @@ Migrating to ChangeLoans (20190721190629)
   ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
   [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeColumnName (20190722004254)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "apools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investorId","pool_amount","created_at","updated_at" FROM "pools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "pools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "pools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "pools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investor_Id","pool_amount","created_at","updated_at" FROM "apools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "apools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190722004254"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeIntegerIdToBeIntegerInPools (20190722004957)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190722004957"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to CreateUsers (20190721141257)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721141257_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721141257"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to CreateLoans (20190721180819)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "borrower" varchar, "term" varchar, "amount" varchar, "rate" varchar, "investorId" varchar, "poolId" varchar, "close_date" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721180819_create_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721180819"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to CreatePools (20190721183824)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "pools" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "investorId" varchar, "pool_amount" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721183824_create_pools.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721183824"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to CreateInvestors (20190721184612)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "investors" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "fee" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721184612_create_investors.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721184612"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeFeeToBeIntegerInInvestors (20190721185041)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "ainvestors" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "fee" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185041_change_fee_to_be_integer_in_investors.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "ainvestors" ("id","name","fee","created_at","updated_at")
+                     SELECT "id","name","fee","created_at","updated_at" FROM "investors"[0m
+  ↳ db/migrate/20190721185041_change_fee_to_be_integer_in_investors.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "investors"[0m
+  ↳ db/migrate/20190721185041_change_fee_to_be_integer_in_investors.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "investors" ("id" integer NOT NULL PRIMARY KEY, "name" varchar DEFAULT NULL, "fee" integer DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185041_change_fee_to_be_integer_in_investors.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "investors" ("id","name","fee","created_at","updated_at")
+                     SELECT "id","name","fee","created_at","updated_at" FROM "ainvestors"[0m
+  ↳ db/migrate/20190721185041_change_fee_to_be_integer_in_investors.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "ainvestors"[0m
+  ↳ db/migrate/20190721185041_change_fee_to_be_integer_in_investors.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721185041"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeTermToBeIntegerInLoans (20190721185343)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aloans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" varchar DEFAULT NULL, "amount" varchar DEFAULT NULL, "rate" varchar DEFAULT NULL, "investorId" varchar DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185343_change_term_to_be_integer_in_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aloans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "loans"[0m
+  ↳ db/migrate/20190721185343_change_term_to_be_integer_in_loans.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "loans"[0m
+  ↳ db/migrate/20190721185343_change_term_to_be_integer_in_loans.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" varchar DEFAULT NULL, "rate" varchar DEFAULT NULL, "investorId" varchar DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185343_change_term_to_be_integer_in_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "loans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "aloans"[0m
+  ↳ db/migrate/20190721185343_change_term_to_be_integer_in_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aloans"[0m
+  ↳ db/migrate/20190721185343_change_term_to_be_integer_in_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721185343"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeRateToBeIntegerInLoans (20190721185836)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aloans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" varchar DEFAULT NULL, "rate" varchar DEFAULT NULL, "investorId" varchar DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185836_change_rate_to_be_integer_in_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aloans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "loans"[0m
+  ↳ db/migrate/20190721185836_change_rate_to_be_integer_in_loans.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "loans"[0m
+  ↳ db/migrate/20190721185836_change_rate_to_be_integer_in_loans.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" varchar DEFAULT NULL, "rate" integer DEFAULT NULL, "investorId" varchar DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185836_change_rate_to_be_integer_in_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "loans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "aloans"[0m
+  ↳ db/migrate/20190721185836_change_rate_to_be_integer_in_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aloans"[0m
+  ↳ db/migrate/20190721185836_change_rate_to_be_integer_in_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721185836"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeAmountToBeIntegerInLoans (20190721185940)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aloans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" varchar DEFAULT NULL, "rate" integer DEFAULT NULL, "investorId" varchar DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185940_change_amount_to_be_integer_in_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aloans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "loans"[0m
+  ↳ db/migrate/20190721185940_change_amount_to_be_integer_in_loans.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "loans"[0m
+  ↳ db/migrate/20190721185940_change_amount_to_be_integer_in_loans.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investorId" varchar DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721185940_change_amount_to_be_integer_in_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "loans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "aloans"[0m
+  ↳ db/migrate/20190721185940_change_amount_to_be_integer_in_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aloans"[0m
+  ↳ db/migrate/20190721185940_change_amount_to_be_integer_in_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721185940"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeInvestorIdToBeIntegerInLoans (20190721190135)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aloans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investorId" varchar DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721190135_change_investor_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aloans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "loans"[0m
+  ↳ db/migrate/20190721190135_change_investor_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "loans"[0m
+  ↳ db/migrate/20190721190135_change_investor_id_to_be_integer_in_loans.rb:3
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investorId" integer DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721190135_change_investor_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "loans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "aloans"[0m
+  ↳ db/migrate/20190721190135_change_investor_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aloans"[0m
+  ↳ db/migrate/20190721190135_change_investor_id_to_be_integer_in_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721190135"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangePoolIdToBeIntegerInLoans (20190721190257)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aloans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investorId" integer DEFAULT NULL, "poolId" varchar DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721190257_change_pool_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "aloans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "loans"[0m
+  ↳ db/migrate/20190721190257_change_pool_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "loans"[0m
+  ↳ db/migrate/20190721190257_change_pool_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investorId" integer DEFAULT NULL, "poolId" integer DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721190257_change_pool_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "loans" ("id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "aloans"[0m
+  ↳ db/migrate/20190721190257_change_pool_id_to_be_integer_in_loans.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aloans"[0m
+  ↳ db/migrate/20190721190257_change_pool_id_to_be_integer_in_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721190257"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeLoans (20190721190629)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aloans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investor_Id" integer DEFAULT NULL, "poolId" integer DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721190629_change_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aloans" ("id","borrower","term","amount","rate","investor_Id","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investorId","poolId","close_date","created_at","updated_at" FROM "loans"[0m
+  ↳ db/migrate/20190721190629_change_loans.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "loans"[0m
+  ↳ db/migrate/20190721190629_change_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "loans" ("id" integer NOT NULL PRIMARY KEY, "borrower" varchar DEFAULT NULL, "term" integer DEFAULT NULL, "amount" integer DEFAULT NULL, "rate" integer DEFAULT NULL, "investor_Id" integer DEFAULT NULL, "poolId" integer DEFAULT NULL, "close_date" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190721190629_change_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "loans" ("id","borrower","term","amount","rate","investor_Id","poolId","close_date","created_at","updated_at")
+                     SELECT "id","borrower","term","amount","rate","investor_Id","poolId","close_date","created_at","updated_at" FROM "aloans"[0m
+  ↳ db/migrate/20190721190629_change_loans.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aloans"[0m
+  ↳ db/migrate/20190721190629_change_loans.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190721190629"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeColumnName (20190722004254)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "apools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investorId","pool_amount","created_at","updated_at" FROM "pools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "pools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "pools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "pools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investor_Id","pool_amount","created_at","updated_at" FROM "apools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "apools"[0m
+  ↳ db/migrate/20190722004254_change_column_name.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190722004254"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeIntegerIdToBeIntegerInPools (20190722004957)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investor_Id","pool_amount","created_at","updated_at" FROM "pools"[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "pools"[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeIntegerIdToBeIntegerInPools (20190722004957)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investor_Id","pool_amount","created_at","updated_at" FROM "pools"[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "pools"[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeIntegerIdToBeIntegerInPools (20190722004957)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "apools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investor_Id","pool_amount","created_at","updated_at" FROM "pools"[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "pools"[0m
+  ↳ db/migrate/20190722004957_change_integer_id_to_be_integer_in_pools.rb:3
+  [1m[35m (1.6ms)[0m  [1m[31mrollback transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-07-22 01:22:34.739446"], ["updated_at", "2019-07-22 01:22:34.739446"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+Migrating to ChangeInvestorIdToBeIntegerInPools (20190722013024)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/migrate/20190722013024_change_investor_id_to_be_integer_in_pools.rb:3
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" varchar DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722013024_change_investor_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "apools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investor_Id","pool_amount","created_at","updated_at" FROM "pools"[0m
+  ↳ db/migrate/20190722013024_change_investor_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "pools"[0m
+  ↳ db/migrate/20190722013024_change_investor_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "pools" ("id" integer NOT NULL PRIMARY KEY, "investor_Id" integer DEFAULT NULL, "pool_amount" varchar DEFAULT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190722013024_change_investor_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "pools" ("id","investor_Id","pool_amount","created_at","updated_at")
+                     SELECT "id","investor_Id","pool_amount","created_at","updated_at" FROM "apools"[0m
+  ↳ db/migrate/20190722013024_change_investor_id_to_be_integer_in_pools.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "apools"[0m
+  ↳ db/migrate/20190722013024_change_investor_id_to_be_integer_in_pools.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190722013024"]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/christiatidwell/.rvm/gems/ruby-2.5.3/bin/rake:23

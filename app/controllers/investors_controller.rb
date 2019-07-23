@@ -9,9 +9,9 @@ class InvestorsController < ApplicationController
   #
   # # GET /users/1
   def show
-     render json: @investor
-    # investor_json = InvestorSerializer.new(@investor).serialized_json
-    # render json: investor_json
+     # render json: @investor
+    investor_json = InvestorSerializer.new(@investor).serialized_json
+    render json: investor_json
   end
 
   # POST /users

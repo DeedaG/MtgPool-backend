@@ -1,7 +1,7 @@
 class Api::V1::SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:session][:username])
-    binding.pry
+#    binding.pry
       if @user && @user.authenticate(params[:session][:password])
         session[:user_id]= @user.id
         render json: @user
@@ -24,7 +24,10 @@ class Api::V1::SessionsController < ApplicationController
     end
 
     def destroy
-      session.clear 
+      session.clear
+      render json: {
+        notice: "succesfully logged out"
+      }, status: ok
     end
 
 end

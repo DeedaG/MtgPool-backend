@@ -1,22 +1,21 @@
 class InvestorsController < ApplicationController
   before_action :set_investor, only: [:show, :update, :destroy]
 
-  # GET /users
+
   def index
     @investors = Investor.all
     render json: @investors
   end
-  #
-  # # GET /users/1
+
   def show
      # render json: @investor
     investor_json = InvestorSerializer.new(@investor).serialized_json
     render json: investor_json
   end
 
-  # POST /users
+
   def create
-    @investor = Investor.new(user_params)
+    @investor = Investor.new(investor_params)
 
     if @investor.save
       render json: @investor, status: :created, location: @investor
@@ -25,7 +24,7 @@ class InvestorsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
+
   def update
     if @investor.update(investor_params)
       render json: @investor
@@ -34,7 +33,7 @@ class InvestorsController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+
   def destroy
     @investor.destroy
   end

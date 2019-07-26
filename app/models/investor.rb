@@ -1,6 +1,6 @@
 class Investor < ApplicationRecord
   has_many :pools
-  has_many :loans
-  belongs_to :user
+  has_many :loans, through: :pools
+  # belongs_to :user
 
 end

@@ -1,4 +1,4 @@
-class InvestorsController < ApplicationController
+class Api::V1::InvestorsController < ApplicationController
   before_action :set_investor, only: [:show, :update, :destroy]
 
 
@@ -8,9 +8,9 @@ class InvestorsController < ApplicationController
   end
 
   def show
-     # render json: @investor
-    investor_json = InvestorSerializer.new(@investor).serialized_json
-    render json: investor_json
+      render json: @investor
+    # investor_json = InvestorSerializer.new(@investor).serialized_json
+    # render json: investor_json
   end
 
 

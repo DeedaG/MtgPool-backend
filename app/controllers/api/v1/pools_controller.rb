@@ -23,11 +23,15 @@ class Api::V1::PoolsController < ApplicationController
 
   def create
     @pool = Pool.new(pool_params)
-
+    @investor = Investor.find_or_create_by(name: Investor.name)
+    
     if @pool.save
-      render json: @pool, status: :created, location: @pool
+      render json: @pool, status: :created
     else
-      render json: @pool.errors, status: :unprocessable_entity
+      error_resp = {
+        error: @pool.errors.full_messages.to_sentence
+      }
+      render json: error_resp, status: :unprocessable_entity
     end
   end
 
@@ -53,7 +57,7 @@ class Api::V1::PoolsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def pool_params
-      params.require(:pool).permit(:name, :pool_amount)
+      params.require(:pool).permit(:name, :pool_amount, :user_id, :investor_id)
     end
 
 end

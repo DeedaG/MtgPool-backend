@@ -6,6 +6,6 @@ class PoolSerializer
 
   belongs_to :investor
   belongs_to :user
-  has_many :loans, serializer: LoanSerializer
+  # has_many :loans, serializer: LoanSerializer
 
 end

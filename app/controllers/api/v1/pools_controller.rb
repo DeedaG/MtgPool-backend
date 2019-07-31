@@ -26,7 +26,7 @@ class Api::V1::PoolsController < ApplicationController
     @investor = Investor.find_or_create_by(name: Investor.name)
     
     if @pool.save
-      render json: @pool, status: :created
+      render json: PoolSerializer.new(@pool), status: :created
     else
       error_resp = {
         error: @pool.errors.full_messages.to_sentence

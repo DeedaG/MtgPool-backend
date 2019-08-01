@@ -22,9 +22,9 @@ class Api::V1::PoolsController < ApplicationController
   end
 
   def create
-    @pool = Pool.new(pool_params)
+    @pool = current_user.pools.build(pool_params)
     @investor = Investor.find_or_create_by(name: Investor.name)
-    
+
     if @pool.save
       render json: PoolSerializer.new(@pool), status: :created
     else
@@ -38,15 +38,25 @@ class Api::V1::PoolsController < ApplicationController
 
   def update
     if @pool.update(pool_params)
-      render json: @pool
+      render json: PoolSerializer.new(@pool), status: :ok
     else
+      error_resp = {
+        error: @pool.errors.full_messages.to_sentence
+      }
       render json: @pool.errors, status: :unprocessable_entity
     end
   end
 
 
   def destroy
-    @pool.destroy
+    if @pool.destroy
+      render json: {data: "Pool deleted"}, status: :ok
+    else
+      error_resp = {
+        error:  "Pool not found"
+      }
+      render json: @pool.errors, status: :unprocessable_entity
+    end
   end
 
   private
@@ -57,7 +67,7 @@ class Api::V1::PoolsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def pool_params
-      params.require(:pool).permit(:name, :pool_amount, :user_id, :investor_id)
+      params.require(:pool).permit(:name, :pool_amount, :investor_id)
     end
 
 end

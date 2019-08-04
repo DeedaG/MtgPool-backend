@@ -24,7 +24,7 @@ class Api::V1::PoolsController < ApplicationController
   def create
     @pool = current_user.pools.build(pool_params)
     @investor = Investor.find_or_create_by(name: Investor.name)
-
+    
     if @pool.save
       render json: PoolSerializer.new(@pool), status: :created
     else

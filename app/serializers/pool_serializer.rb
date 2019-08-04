@@ -1,6 +1,6 @@
 class PoolSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :pool_amount, :investor_id, :loans
+  attributes :id, :name, :pool_amount, :investor_id, :loans
 
 
 

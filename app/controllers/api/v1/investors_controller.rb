@@ -4,13 +4,13 @@ class Api::V1::InvestorsController < ApplicationController
 
   def index
     @investors = Investor.all
-    render json: @investors
+    render json: InvestorSerializer.new(@investors)
   end
 
   def show
       render json: @investor
-    # investor_json = InvestorSerializer.new(@investor).serialized_json
-    # render json: investor_json
+     # investor_json = InvestorSerializer.new(@investor)
+     # render json: investor_json
   end
 
 
@@ -18,7 +18,7 @@ class Api::V1::InvestorsController < ApplicationController
     @investor = Investor.new(investor_params)
 
     if @investor.save
-      render json: @investor, status: :created, location: @investor
+      render json: InvestorSerializer.new(@investor), status: :created
     else
       render json: @investor.errors, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Api::V1::InvestorsController < ApplicationController
 
   def update
     if @investor.update(investor_params)
-      render json: @investor
+      render json: InvestorSerializer.new(@investor), status: ok
     else
       render json: @investor.errors, status: :unprocessable_entity
     end

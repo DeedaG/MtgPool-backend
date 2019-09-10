@@ -24,8 +24,15 @@ class Api::V1::PoolsController < ApplicationController
   def create
     @pool = current_user.pools.build(pool_params)
     @investor = Investor.find_or_create_by(name: Investor.name)
-    
+    @loans = params[:loans].map do |lid|
+                lid[:id]
+              end
+    @pool.loans = Loan.find(@loans.uniq)
     if @pool.save
+      # @pool.loans = @loans.map do |loan|
+      #             loan.pool_id = @pool.id
+      #           end
+
       render json: PoolSerializer.new(@pool), status: :created
     else
       error_resp = {
@@ -67,7 +74,7 @@ class Api::V1::PoolsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def pool_params
-      params.require(:pool).permit(:name, :pool_amount, :investor_id)
+      params.require(:pool).permit(:name, :pool_amount, :investor_id, {:loans_attributes => [:id, :pool_id]})
     end
 
 end

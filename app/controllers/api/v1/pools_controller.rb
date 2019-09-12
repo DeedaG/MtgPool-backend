@@ -44,6 +44,10 @@ class Api::V1::PoolsController < ApplicationController
 
 
   def update
+    @loans = params[:loans].map do |lid|
+              lid[:id]
+            end
+    @pool.loans = Loan.find(@loans.uniq)
     if @pool.update(pool_params)
       render json: PoolSerializer.new(@pool), status: :ok
     else

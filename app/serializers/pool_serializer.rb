@@ -1,6 +1,6 @@
 class PoolSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :name, :pool_amount, :investor_id, :loans
+  attributes :id, :name, :pool_amount, :investor_id, :loans, :comments
 
   def loans
     loans.map(loan => loan.pool_id = pool.id)

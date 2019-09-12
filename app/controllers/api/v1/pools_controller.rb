@@ -74,7 +74,7 @@ class Api::V1::PoolsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def pool_params
-      params.require(:pool).permit(:name, :pool_amount, :investor_id, {:loans_attributes => [:id, :pool_id]})
+      params.require(:pool).permit(:name, :pool_amount, :comments, :investor_id, {:loans_attributes => [:id, :pool_id]})
     end
 
 end

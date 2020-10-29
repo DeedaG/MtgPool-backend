@@ -9,8 +9,7 @@ class Api::V1::InvestorsController < ApplicationController
 
   def show
       render json: @investor
-     # investor_json = InvestorSerializer.new(@investor)
-     # render json: investor_json
+      render json: InvestorSerializer.new(@investor)
   end
 
 

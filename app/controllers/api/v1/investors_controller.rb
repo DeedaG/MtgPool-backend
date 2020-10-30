@@ -26,7 +26,7 @@ class Api::V1::InvestorsController < ApplicationController
 
   def update
     if @investor.update(investor_params)
-      render json: InvestorSerializer.new(@investor), status: ok
+      render json: InvestorSerializer.new(@investor), status: updated
     else
       render json: @investor.errors, status: :unprocessable_entity
     end

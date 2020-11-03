@@ -6,7 +6,7 @@ class Api::V1::PoolsController < ApplicationController
     # @pools = Pool.all
     # render json: @pools
     if logged_in?
-      @pools = current_user.pools
+      @pools = Pool.all
       render json: PoolSerializer.new(@pools)
     else
       render json: {
@@ -22,7 +22,8 @@ class Api::V1::PoolsController < ApplicationController
   end
 
   def create
-    @pool = current_user.pools.build(pool_params)
+    @pools.Pool.all
+    @pool = @pools.build(pool_params)
     @investor = Investor.find_or_create_by(name: Investor.name)
     @loans = params[:loans].map do |lid|
                 lid[:id]

@@ -25,8 +25,6 @@ class Api::V1::LoansController < ApplicationController
     end
   end
 
-
-
   def update
     if @loan.update(loan_params)
       render json: LoanSerializer.new(@loan), status: :ok

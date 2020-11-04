@@ -33,7 +33,7 @@ class Api::V1::PoolsController < ApplicationController
 
     @pool.loans = Loan.find(@loans.uniq)
     if @pool.save
-binding.pry
+# binding.pry
 
       render json: PoolSerializer.new(@pool), status: :created
     else
@@ -46,11 +46,10 @@ binding.pry
 
 
   def update
-    @loans = params[:loans]
-      .reject!{ |loan| loan.nil? || loan.empty? }
-      .map do |lid|
-              lid[:id]
+    @loans = params[:loans].map do |loan|
+              loan[:id]
             end
+    @loans.reject!{ |loan| loan.nil? || loan.empty? }
     @pool.loans = Loan.find(@loans.uniq)
     if @pool.update(pool_params)
       render json: PoolSerializer.new(@pool), status: :ok

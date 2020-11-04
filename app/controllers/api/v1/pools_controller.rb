@@ -22,17 +22,18 @@ class Api::V1::PoolsController < ApplicationController
   end
 
   def create
-    @pools.Pool.all
-    @pool = @pools.build(pool_params)
-    @investor = Investor.find_or_create_by(name: Investor.name)
-    @loans = params[:loans].map do |lid|
-                lid[:id]
-              end
+    @pool = Pool.new(pool_params)
+    # @investor = Investor.find_by(id: @pool.investor_id)
+    @loans = params[:loans].map do |loan|
+      # loan[:attributes]
+      loan[:id]
+        end
+
+    @loans.reject!{ |loan| loan.nil? || loan.empty? }
+
     @pool.loans = Loan.find(@loans.uniq)
     if @pool.save
-      # @pool.loans = @loans.map do |loan|
-      #             loan.pool_id = @pool.id
-      #           end
+binding.pry
 
       render json: PoolSerializer.new(@pool), status: :created
     else
@@ -45,7 +46,9 @@ class Api::V1::PoolsController < ApplicationController
 
 
   def update
-    @loans = params[:loans].map do |lid|
+    @loans = params[:loans]
+      .reject!{ |loan| loan.nil? || loan.empty? }
+      .map do |lid|
               lid[:id]
             end
     @pool.loans = Loan.find(@loans.uniq)
@@ -79,7 +82,8 @@ class Api::V1::PoolsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def pool_params
-      params.require(:pool).permit(:name, :pool_amount, :comments, :investor_id, {:loans_attributes => [:id, :pool_id]})
+      params.require(:pool).permit(:name, :user_id, :pool_amount, :comments,
+        :investor_id, {:loans_attributes => [:id, :pool_id]})
     end
 
 end

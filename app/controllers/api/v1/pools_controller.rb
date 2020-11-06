@@ -23,9 +23,7 @@ class Api::V1::PoolsController < ApplicationController
 
   def create
     @pool = Pool.new(pool_params)
-    # @investor = Investor.find_by(id: @pool.investor_id)
     @loans = params[:loans].map do |loan|
-      # loan[:attributes]
       loan[:id]
         end
 
@@ -34,7 +32,6 @@ class Api::V1::PoolsController < ApplicationController
     @pool.loans = Loan.find(@loans.uniq)
     if @pool.save
 # binding.pry
-
       render json: PoolSerializer.new(@pool), status: :created
     else
       error_resp = {

@@ -27,7 +27,7 @@ class Api::V1::LoansController < ApplicationController
 
   def update
     if @loan.update(loan_params)
-      render json: LoanSerializer.new(@loan), status: :ok
+      render json: LoanSerializer.new(@loan), status: :udpated
     else
       render json: @loan.errors, status: :unprocessable_entity
     end
